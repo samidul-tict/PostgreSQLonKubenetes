@@ -7,5 +7,4 @@ metadata:
     app: postgres
 data:
   POSTGRES_DB_NAME: postgresdb
-  POSTGRES_DB_PORT: '5432"
-  
+  POSTGRES_DB_PORT: "5432"
