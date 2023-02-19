@@ -31,5 +31,5 @@ spec:
           configMap:
             name: postgres-config
         - name: postgres-secret
-          configMap:
-            name: app-database-auth
+          secret:
+            secretName: app-database-auth
