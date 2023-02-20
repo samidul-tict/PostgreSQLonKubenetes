@@ -18,7 +18,7 @@ spec:
           image: postgres:latest
           imagePullPolicy: "IfNotPresent"
           command: ["/bin/bash"]
-          args: ["-c", "echo 'host all all all trust' >> /var/lib/postgresql/data/pg_hba.conf;"]
+          args: ["-c", "while true; do echo 'host all all all trust' >> /var/lib/postgresql/data/pg_hba.conf; sleep 10;done"]
           ports:
             - containerPort: 5432
           env:
