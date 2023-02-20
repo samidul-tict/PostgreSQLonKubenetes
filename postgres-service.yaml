@@ -9,13 +9,6 @@ metadata:
     type: NodePort # Sets service type
     ports:
       - port: 5432 # Sets port to run the postgres application
+        nodePort: 30432
     selector:
       app: postgres
-      ---
-      spec:
-  selector:
-    app.kubernetes.io/name: MyApp
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 9376
