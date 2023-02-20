@@ -19,6 +19,7 @@ spec:
           imagePullPolicy: "IfNotPresent"
           securityContext:
             runAsUser: 999
+            fsGroupChangePolicy: "OnRootMismatch"
           ports:
             - containerPort: 5432
           env:
