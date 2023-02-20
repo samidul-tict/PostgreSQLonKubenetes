@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres  # Sets Deployment name
+  name: postgres
   namespace: postgres
 spec:
   replicas: 1
@@ -17,13 +17,17 @@ spec:
         - name: postgres
           image: postgres:latest
           imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgredb
             - mountPath: /etc/config/postgresql/config
               name: postgres-config
+              readOnly: true
             - mountPath: /etc/authentication/postgresql/secret
               name: postgres-secret
+              readOnly: true
       volumes:
         - name: postgredb
           persistentVolumeClaim:
