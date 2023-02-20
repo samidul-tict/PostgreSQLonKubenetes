@@ -17,7 +17,6 @@ spec:
         - name: postgres
           image: postgres:latest
           imagePullPolicy: "IfNotPresent"
-          command: [ "docker-entrypoint.sh" ]
           ports:
             - containerPort: 5432
           env:
