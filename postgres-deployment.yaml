@@ -15,11 +15,8 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:latest
+          image: postgres:12-alpine
           imagePullPolicy: "IfNotPresent"
-          securityContext:
-            runAsUser: 999
-            runAsGroup: 0
           ports:
             - containerPort: 5432
           env:
@@ -38,6 +35,7 @@ spec:
                 name: postgres-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
+              subPath: postgres
               name: postgredb
             - mountPath: /etc/config/postgresql/config
               name: postgres-config
