@@ -1,35 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: postgres  # Sets Deployment name
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
+  name: postgres
+  namespace: postgres
+  labels:
+      app: postgres # Labels and Selectors
+  spec:
+    type: NodePort # Sets service type
+    ports:
+      - port: 5432 # Sets port to run the postgres application
+    selector:
       app: postgres
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      containers:
-        - name: postgres
-          image: postgres:latest
-          imagePullPolicy: "IfNotPresent"
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
-            - mountPath: /etc/config/postgresql/config
-              name: postgres-config
-            - mountPath: /etc/authentication/postgresql/secret
-              name: postgres-secret
-      volumes:
-        - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
-        - name: postgres-config
-          configMap:
-            name: postgres-config
-        - name: postgres-secret
-          secret:
-            secretName: app-database-auth
+      ---
+      spec:
+  selector:
+    app.kubernetes.io/name: MyApp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
