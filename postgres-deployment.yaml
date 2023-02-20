@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: "IfNotPresent"
           securityContext:
             runAsUser: 999
-            fsGroup: 999
+            runAsGroup: 0
           ports:
             - containerPort: 5432
           env:
