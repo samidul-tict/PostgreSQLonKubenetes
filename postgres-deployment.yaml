@@ -17,7 +17,6 @@ spec:
         - name: postgres
           image: postgres:latest
           imagePullPolicy: "IfNotPresent"
-          command: ["sh", "-c", "while true; do echo 'host all all 0.0.0.0/0 md5' >> /var/lib/postgresql/data/pg_hba.conf; echo 'port = 5432' >> /var/lib/postgresql/data/postgresql.conf; sleep 10; done"]
           ports:
             - containerPort: 5432
           env:
@@ -31,18 +30,10 @@ spec:
                 secretKeyRef:
                   name: app-database-auth
                   key: password
-            - name: POSTGRES_DB
-              value: postgresdb
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgredb
-            - mountPath: /etc/authentication/postgresql/secret
-              name: postgres-secret
-              readOnly: true
       volumes:
         - name: postgredb
           persistentVolumeClaim:
             claimName: postgres-pv-claim
-        - name: postgres-secret
-          secret:
-            secretName: app-database-auth
