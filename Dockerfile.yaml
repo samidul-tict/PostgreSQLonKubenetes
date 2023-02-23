@@ -1,5 +1,4 @@
 FROM postgres:latest
-MAINTAINER samidul.tict@gmail.com
 
 RUN echo 'host all all all md5' >> /var/lib/postgresql/data/pg_hba.conf
 RUN sed -i "s/#port/port/g" /var/lib/postgresql/data/postgresql.conf
