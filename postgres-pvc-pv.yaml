@@ -13,7 +13,7 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/kube-pv/postgres/data"
+    path: "/kube-storage/postgres/data"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
