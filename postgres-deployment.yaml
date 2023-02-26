@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: postgres-deployment
   namespace: postgres
   labels:
     app: postgres
@@ -16,7 +16,7 @@ spec:
         app: postgres
     spec:
       containers:
-        - name: postgres
+        - name: postgres-container
           image: postgres:latest
           imagePullPolicy: "IfNotPresent"
           ports:
@@ -33,8 +33,8 @@ spec:
                   name: app-database-auth
                   key: password
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
+            - name: postgredb
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: postgredb
           persistentVolumeClaim:
