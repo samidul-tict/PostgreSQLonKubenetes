@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres-sami:latest
+          image: postgres:latest
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
